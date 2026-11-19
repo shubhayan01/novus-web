@@ -12,6 +12,25 @@
   if (burger) burger.addEventListener("click", () => links.classList.toggle("open"));
   if (links) links.addEventListener("click", (e) => { if (e.target.tagName === "A") links.classList.remove("open"); });
 
+  /* ---- Nav Products dropdown (click to toggle; hover handled in CSS) ---- */
+  document.querySelectorAll(".nav-drop-toggle").forEach((t) => {
+    t.addEventListener("click", (e) => {
+      e.preventDefault();
+      const li = t.parentElement;
+      const open = li.classList.toggle("open");
+      t.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".has-drop")) {
+      document.querySelectorAll(".has-drop.open").forEach((li) => {
+        li.classList.remove("open");
+        const btn = li.querySelector(".nav-drop-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+  });
+
   /* ---- Hero parallax: AUTOMATION floats up on scroll ---- */
   const word = document.getElementById("heroWord");
   const head = document.getElementById("heroHead");
@@ -86,7 +105,13 @@
   if (form) {
     const TO = "novus.reachus@gmail.com";
     const val = (n) => (form.elements[n] && form.elements[n].value || "").trim();
-    const showSuccess = () => { form.classList.add("sent"); form.scrollIntoView({ behavior: "smooth", block: "center" }); };
+    const showSuccess = () => {
+      form.classList.add("sent");
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Fire a conversion event for GTM / GA4 (configure as a conversion in your container)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "form_submit", form_name: "contact" });
+    };
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
