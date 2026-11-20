@@ -29,6 +29,23 @@
         if (btn) btn.setAttribute("aria-expanded", "false");
       });
     }
+    if (!e.target.closest(".nav-demo")) {
+      document.querySelectorAll(".nav-demo.open").forEach((d) => {
+        d.classList.remove("open");
+        const btn = d.querySelector(".nav-demo-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+  });
+
+  /* ---- Book a Demo popover (hover via CSS; click to toggle for touch) ---- */
+  document.querySelectorAll(".nav-demo-toggle").forEach((t) => {
+    t.addEventListener("click", (e) => {
+      e.preventDefault();
+      const box = t.closest(".nav-demo");
+      const open = box.classList.toggle("open");
+      t.setAttribute("aria-expanded", open ? "true" : "false");
+    });
   });
 
   /* ---- Hero parallax: AUTOMATION floats up on scroll ---- */
@@ -138,6 +155,40 @@
       try {
         const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
         if (res.ok) showSuccess();
+        else alert(`Sorry, something went wrong. Please email us directly at ${TO}.`);
+      } catch {
+        alert(`Network error. Please email us directly at ${TO}.`);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = "Send message"; }
+      }
+    });
+  }
+
+  /* ---- Book a Demo quick form: separate from the contact page, same inbox ---- */
+  const demo = document.getElementById("demoForm");
+  if (demo) {
+    const TO = "novus.reachus@gmail.com";
+    const val = (n) => (demo.elements[n] && demo.elements[n].value || "").trim();
+    demo.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!demo.checkValidity()) { demo.reportValidity(); return; }
+      const endpoint = demo.getAttribute("action") || "";
+      const done = () => {
+        demo.classList.add("sent");
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "form_submit", form_name: "book_a_demo" });
+      };
+      if (!endpoint || endpoint.includes("YOUR_FORM_ID")) {
+        const body = [`Name: ${val("name")}`, `Contact: ${val("contact")}`, "", val("message")].join("\n");
+        window.location.href = `mailto:${TO}?subject=${encodeURIComponent("Quick demo request — Novus")}&body=${encodeURIComponent(body)}`;
+        done();
+        return;
+      }
+      const btn = demo.querySelector("button[type=submit]");
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      try {
+        const res = await fetch(endpoint, { method: "POST", body: new FormData(demo), headers: { Accept: "application/json" } });
+        if (res.ok) done();
         else alert(`Sorry, something went wrong. Please email us directly at ${TO}.`);
       } catch {
         alert(`Network error. Please email us directly at ${TO}.`);

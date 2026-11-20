@@ -51,7 +51,6 @@
       <span class="brand-name">NOVUS</span>
     </a>
     <ul class="nav-links">
-      <li><a href="/#about">About</a></li>
       <li class="has-drop">
         <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">Products<svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="nav-drop" role="menu">
@@ -60,11 +59,43 @@
           <a href="/scribe" role="menuitem"><b>SCRIBE</b><span>AI content operations agent</span></a>
         </div>
       </li>
-      <li><a href="/blog">Blog</a></li>
+      <li><a href="/use-cases">Use Cases</a></li>
+      <li class="has-drop">
+        <button class="nav-drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">Resources<svg class="nav-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="nav-drop" role="menu">
+          <a href="/blog" role="menuitem"><b>Blog</b><span>Playbooks &amp; field notes</span></a>
+          <a href="/ai-learning" role="menuitem"><b>AI Learning</b><span>Learn AI for agencies</span></a>
+          <a href="/guides" role="menuitem"><b>Guides</b><span>Step-by-step walkthroughs</span></a>
+        </div>
+      </li>
       <li><a href="/pricing">Pricing</a></li>
-      <li><a href="/contact">Contact Us</a></li>
+      <li class="nav-demo-m"><a href="/contact">Book a Demo</a></li>
     </ul>
-    <a href="/contact" class="btn btn-light nav-cta">Book a Demo</a>
+    <div class="nav-demo">
+      <button class="btn btn-light nav-cta nav-demo-toggle" type="button" aria-expanded="false" aria-haspopup="true">Book a Demo</button>
+      <div class="demo-pop" role="dialog" aria-label="Book a demo">
+        <!-- Quick demo requests go to novus.reachus@gmail.com via Formspree (separate from the contact page form) -->
+        <form class="demo-form" id="demoForm" action="https://formspree.io/f/xqpqlwde" method="POST" novalidate>
+          <div class="demo-fields">
+            <p class="demo-title">Book a quick demo</p>
+            <input type="hidden" name="_subject" value="Quick demo request — Novus nav form" />
+            <input type="hidden" name="source" value="nav-book-a-demo" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0" />
+            <label for="demoName">Name</label>
+            <input type="text" id="demoName" name="name" placeholder="Your name" required />
+            <label for="demoContact">Contact</label>
+            <input type="text" id="demoContact" name="contact" placeholder="Email or phone" required />
+            <label for="demoMsg">Message</label>
+            <textarea id="demoMsg" name="message" placeholder="What would you like to see?" required></textarea>
+            <button type="submit" class="btn btn-light demo-send">Send message</button>
+          </div>
+          <div class="demo-success" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <p>Thanks — we'll be in touch shortly.</p>
+          </div>
+        </form>
+      </div>
+    </div>
     <button class="nav-burger" aria-label="Toggle menu"><span></span><span></span></button>
   </nav>
 </header>

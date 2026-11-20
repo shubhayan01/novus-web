@@ -466,3 +466,34 @@ a.post-card:hover{transform:translateY(-6px);border-color:rgba(150,130,255,.4)}
   .steps{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
 }
+
+/* ===== Book a Demo popover (nav) ===== */
+.nav-demo{position:relative;margin-left:6px}
+.nav-demo-toggle{cursor:pointer}
+.demo-pop{position:absolute;top:calc(100% + 15px);right:0;width:312px;
+  background:#0b0b0f;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:20px;
+  box-shadow:0 26px 70px rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .25s,transform .25s,visibility .25s;pointer-events:none;z-index:80;text-align:left}
+.demo-pop::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-demo:hover .demo-pop,.nav-demo:focus-within .demo-pop,.nav-demo.open .demo-pop{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.demo-title{font-size:15px;font-weight:600;color:#fff;margin:0 0 14px}
+.demo-form label{display:block;font-size:12px;color:var(--txt-mid);margin:0 0 6px;font-weight:500}
+.demo-form input,.demo-form textarea{width:100%;background:#141418;border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:10px 12px;color:#fff;font-family:inherit;font-size:14px;margin-bottom:12px;transition:.2s}
+.demo-form input::placeholder,.demo-form textarea::placeholder{color:#6d6d7a}
+.demo-form input:focus,.demo-form textarea:focus{outline:none;border-color:#7d6fe0;background:#17171d;box-shadow:0 0 0 3px rgba(125,111,224,.18)}
+.demo-form textarea{resize:vertical;min-height:70px}
+.demo-send{width:100%;margin-top:2px}
+.demo-success{display:none;text-align:center;padding:16px 4px}
+.demo-success svg{width:40px;height:40px;margin:0 auto 10px;display:block;fill:none;stroke:#28c840;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.demo-success p{color:#cfcde0;font-size:14px;margin:0}
+.demo-form.sent .demo-fields{display:none}
+.demo-form.sent .demo-success{display:block}
+.nav-demo-m{display:none}
+@media(max-width:860px){
+  .nav-demo{display:none}
+  .nav-links.open .nav-demo-m{display:block;width:100%}
+  .nav-links.open .nav-demo-m a{color:#fff;font-weight:600}
+}
