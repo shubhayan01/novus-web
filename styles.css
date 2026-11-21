@@ -259,6 +259,11 @@ a{text-decoration:none;color:inherit}
 .page-head .eyebrow{color:#fff}
 .page-sub{max-width:580px;margin:20px auto 0;color:#e7e4f6;font-size:16px;line-height:1.55}
 .page-head .big-head{color:#fff}
+.crumb{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px;font-size:13px;letter-spacing:.01em}
+.crumb a{color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s ease}
+.crumb a:hover{color:#fff}
+.crumb .crumb-sep{color:rgba(255,255,255,.4)}
+.crumb [aria-current="page"]{color:#fff;font-weight:500}
 
 /* ===== PRICING ===== */
 .pricing{background:#000}
