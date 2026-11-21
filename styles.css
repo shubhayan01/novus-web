@@ -264,6 +264,8 @@ a{text-decoration:none;color:inherit}
 .crumb a:hover{color:#fff}
 .crumb .crumb-sep{color:rgba(255,255,255,.4)}
 .crumb [aria-current="page"]{color:#fff;font-weight:500}
+.link-arrow{display:inline-block;margin-top:16px;color:#9a8dff;font-weight:600;font-size:14.5px;text-decoration:none;transition:color .2s ease}
+.link-arrow:hover{color:#c2b8ff}
 
 /* ===== PRICING ===== */
 .pricing{background:#000}
