@@ -366,6 +366,10 @@ a{text-decoration:none;color:inherit}
   .help-copy{font-size:19px}
   .testi-wall{grid-template-columns:1fr;height:520px}
   .footer-grid{grid-template-columns:1fr}
+  .brand-name{font-size:15px;letter-spacing:1px}
+}
+@media(max-width:360px){
+  .brand-name{font-size:13px;letter-spacing:.5px}
 }
 
 /* ===== NAV DROPDOWN (Products) ===== */
